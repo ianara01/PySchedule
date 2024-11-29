@@ -1,0 +1,18 @@
+<! ---schedule_detail.html ---   >
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>{{ schedule.title }}</h1>
+    <p><strong>Date:</strong> {{ schedule.date }}</p>
+    <p><strong>Priority:</strong> {{ schedule.priority }}</p>
+    <p><strong>Description:</strong> {{ schedule.description }}</p>
+
+    <div class="mt-4">
+        <a href="{% url 'schedule:schedule_update' schedule.id %}" class="btn btn-primary">Edit</a>
+        <a href="{% url 'schedule:schedule_delete' schedule.id %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'schedule:schedule_list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>
+{% endblock %}

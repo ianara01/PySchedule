@@ -1,0 +1,35 @@
+<!   ---index.html   --->
+
+{% extends 'base.html' %}
+{% load static %}  <!-- static 태그를 로드 -->
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Welcome to the Schedule App</h1>
+    
+    <!-- Static image example -->
+    <div class="text-center">
+        <img src="{% static 'images/lion.jpg' %}" alt="Lion Image" class="img-fluid">
+    </div>
+    
+    <div class="d-flex justify-content-between mb-3">
+        <a href="{% url 'schedule:schedule_list' %}" class="btn btn-primary">View All Schedules</a>
+        <a href="{% url 'schedule:schedule_create' %}" class="btn btn-success">Add New Schedule</a>
+    </div>
+
+    <h3>Recent Schedules</h3>
+    {% if recent_schedules %}
+        <ul class="list-group">
+            {% for schedule in recent_schedules %}
+                <li class="list-group-item">
+                    <a href="{% url 'schedule:schedule_detail' schedule.id %}" class="text-decoration-none">
+                        {{ schedule.title }} - {{ schedule.date }}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center text-muted">No recent schedules available.</p>
+    {% endif %}
+</div>
+{% endblock %}
